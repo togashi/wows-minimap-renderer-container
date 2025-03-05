@@ -6,9 +6,10 @@ RUN git clone https://github.com/WoWs-Builder-Team/minimap_renderer.git \
     && sed -i s/numpy==1\.23\.2/numpy==2\.2\.3/ minimap_renderer/setup.cfg \
     && sed -i s/numpy==1\.23\.2/numpy==2\.2\.3/ minimap_renderer/requirements.txt \
     && pip install --upgrade --root-user-action warn ./minimap_renderer
+RUN rm -rf minimap_renderer
 
+ENV REPLAYDIR=/replays
 COPY Makefile /Makefile
-
-VOLUME /replays
+VOLUME ${REPLAYDIR}
 
 ENTRYPOINT ["make"]
