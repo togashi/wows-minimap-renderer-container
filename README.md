@@ -8,13 +8,13 @@ Containerized [minimap_renderer](https://github.com/WoWs-Builder-Team/minimap_re
 > docker compose build default
 ```
 
-## Render single replay file to movie
+## Render single replay file to video
 
 ```shell
 > docker run -i --rm wows_minimap_renderer < file.wowsreplay > file.mp4
 ```
 
-## Render all replay files to movies
+## Render all replay files to videos
 
 ```shell
 > docker run -it --rm --mount type=bind,source=<PATH_TO_YOUR_REPLAYS_DIR>,target=/replays wows_minimap_renderer all

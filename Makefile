@@ -3,6 +3,8 @@ ALLMP4 := $(ALLSRC:.wowsreplay=.mp4)
 TMPSRC := $(REPLAYDIR)/tmp.wowsreplay
 TMPMP4 := $(TMPSRC:.wowsreplay=.mp4)
 
+.PHONY: all pipe
+
 pipe: $(TMPMP4)
 	@cat $<
 
