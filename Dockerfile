@@ -1,4 +1,4 @@
-FROM python:3.10-alpine as builder
+FROM python:3.10-alpine AS builder
 
 RUN apk update && apk add --no-cache git alpine-sdk ffmpeg
 RUN pip install --upgrade pip langdetect hanzidentifier
@@ -16,7 +16,7 @@ COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/pytho
 
 ENV REPLAYDIR=/replays
 COPY Makefile /Makefile
-COPY entrypoint.py /entrypoint.py
+COPY make.py /make.py
 VOLUME ${REPLAYDIR}
 
 ENTRYPOINT ["make"]
