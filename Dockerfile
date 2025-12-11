@@ -1,8 +1,11 @@
 FROM python:3.10-alpine AS builder
 
+ARG RENDERER_REPOSITORY
+ARG RENDERER_BRANCH
+
 RUN apk update && apk add --no-cache git alpine-sdk ffmpeg
 RUN pip install --upgrade pip langdetect hanzidentifier
-RUN git clone https://github.com/WoWs-Builder-Team/minimap_renderer.git \
+RUN git clone -b ${RENDERER_BRANCH} ${RENDERER_REPOSITORY} \
     && sed -i s/numpy==1\.23\.2/numpy==2\.2\.3/ minimap_renderer/setup.cfg \
     && sed -i s/numpy==1\.23\.2/numpy==2\.2\.3/ minimap_renderer/requirements.txt \
     && pip install --upgrade --root-user-action warn ./minimap_renderer
